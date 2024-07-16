@@ -111,5 +111,7 @@ We welcome contributions to enhance ViTime. Please submit pull requests or open 
 
 This project is licensed under the MIT License.
 
+## Star History
 
+[![Star History Chart](https://api.star-history.com/svg?repos=IkeYang/ViTime&type=Date)](https://star-history.com/#IkeYang/ViTime&Date)
 
