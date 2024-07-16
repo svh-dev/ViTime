@@ -10,7 +10,8 @@ from functools import partial
 import warnings
 import cv2
 import pickle
-from pyemd import EMD
+try: from pyemd import EMD
+except: from pyemd import emd as EMD
 from PIL import Image, ImageDraw
 import matplotlib.pyplot as plt
 
