@@ -50,7 +50,7 @@ We provide weights for three models in the following links:
 
 To run the inference code, follow these steps:
 
-1. **Load the Pretrained Model**: Ensure you have the pretrained model file `ViTime_V2_Opensource.pth`.
+1. **Load the Pretrained Model**: Ensure you have the pretrained model file `ViTime_V2.pth`.
 
 2. **Prepare the Inference Script**:
 
@@ -95,7 +95,8 @@ python inference.py
 ```
 
 This script loads the ViTime model, performs inference on example sinusoidal data, and plots the predicted sequence alongside the input sequence.
-
+### Quick start
+Run ViTime.ipynb in Google Colab for quick start or via [[Colab]([https://arxiv.org/abs/2407.07311](https://colab.research.google.com/drive/1vWi2razIF58TOm1SDG3bwyPb_I8qMRXh?usp=sharing))]
 ## Experiments and Results
 
 ViTime has been evaluated on a diverse set of previously unseen forecasting datasets, demonstrating state-of-the-art zero-shot performance. The model often surpasses the best individually trained supervised models, showcasing the potential of visual intelligence in time series forecasting.
