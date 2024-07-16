@@ -12,7 +12,8 @@ ViTime is a novel Visual Intelligence-based foundation model for time series for
 - **Zero-Shot Performance**: Achieves state-of-the-art zero-shot forecasting on diverse datasets, often surpassing the best supervised models.
 
 ## Getting Started
-
+### Quick start
+Run ViTime.ipynb in Google Colab for quick start or via [[Colab](https://colab.research.google.com/drive/1vWi2razIF58TOm1SDG3bwyPb_I8qMRXh?usp=sharing)]
 ### Prerequisites
 
 - Python 3.9+
@@ -95,8 +96,7 @@ python inference.py
 ```
 
 This script loads the ViTime model, performs inference on example sinusoidal data, and plots the predicted sequence alongside the input sequence.
-### Quick start
-Run ViTime.ipynb in Google Colab for quick start or via [[Colab]([https://arxiv.org/abs/2407.07311](https://colab.research.google.com/drive/1vWi2razIF58TOm1SDG3bwyPb_I8qMRXh?usp=sharing))]
+
 ## Experiments and Results
 
 ViTime has been evaluated on a diverse set of previously unseen forecasting datasets, demonstrating state-of-the-art zero-shot performance. The model often surpasses the best individually trained supervised models, showcasing the potential of visual intelligence in time series forecasting.
