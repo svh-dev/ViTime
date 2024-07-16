@@ -44,7 +44,7 @@ We provide weights for three models in the following links:
 2. **ViTime_1072.pth**: Specialized for look back window = 1072
    - [Model Weights](https://drive.google.com/file/d/17Sn40KR87Vb5YEh7ysN5Z1gm4CiWd_jy/view?usp=sharing)
 
-3. **ViTime_V2.pth**: Flexible input look back window = [1, 1024]
+3. **ViTime_V2.pth**: Flexible input look back window = [256, 1024]
    - [Model Weights](https://drive.google.com/file/d/1kwfvmibEW9u5A_ybYWE2gNZyE9khYs7f/view?usp=sharing)
 
 ### Model Inference
