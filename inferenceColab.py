@@ -4,9 +4,9 @@ from model.model import ViTime
 import numpy as np
 import torch
 
-def main(datapath, savepath):
+def main(modelpath, savepath):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    checkpoint = torch.load(datapath, map_location=device)
+    checkpoint = torch.load(modelpath, map_location=device)
     args = checkpoint['args']
     args.device = device
     args.flag = 'test'
@@ -33,7 +33,7 @@ def main(datapath, savepath):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='ViTime model inference')
-    parser.add_argument('--datapath', type=str, required=True, help='Path to the model checkpoint file')
+    parser.add_argument('--modelpath', type=str, required=True, help='Path to the model checkpoint file')
     parser.add_argument('--savepath', type=str, default='plot.png', help='Path to save the plot image (default: plot.png)')
     args = parser.parse_args()
-    main(args.datapath, args.savepath)
+    main(args.modelpath, args.savepath)
