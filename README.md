@@ -13,7 +13,7 @@ ViTime is a novel Visual Intelligence-based foundation model for time series for
 
 ## Getting Started
 ### Quick start
-Run ViTime via [[Colab](https://colab.research.google.com/drive/1vWi2razIF58TOm1SDG3bwyPb_I8qMRXh?usp=sharing)]!
+Try ViTime via [[Colab](https://colab.research.google.com/drive/1vWi2razIF58TOm1SDG3bwyPb_I8qMRXh?usp=sharing)]!
 ### Prerequisites
 
 - Python 3.9+
