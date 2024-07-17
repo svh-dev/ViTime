@@ -12,7 +12,8 @@ ViTime is a novel Visual Intelligence-based foundation model for time series for
 - **Zero-Shot Performance**: Achieves state-of-the-art zero-shot forecasting on diverse datasets, often surpassing the best supervised models.
 
 ## Getting Started
-
+### Quick start
+Run ViTime.ipynb in Google Colab for quick start or via [[Colab](https://colab.research.google.com/drive/1vWi2razIF58TOm1SDG3bwyPb_I8qMRXh?usp=sharing)]
 ### Prerequisites
 
 - Python 3.9+
@@ -43,14 +44,14 @@ We provide weights for three models in the following links:
 2. **ViTime_1072.pth**: Specialized for look back window = 1072
    - [Model Weights](https://drive.google.com/file/d/17Sn40KR87Vb5YEh7ysN5Z1gm4CiWd_jy/view?usp=sharing)
 
-3. **ViTime_V2.pth**: Flexible input look back window = [1, 1024]
-   - [Model Weights](https://drive.google.com/file/d/1kwfvmibEW9u5A_ybYWE2gNZyE9khYs7f/view?usp=sharing)
+3. **ViTime_V2.pth**: Flexible input look back window = [256, 1024]
+   - [Model Weights](https://drive.google.com/file/d/1b7MVlvWsLApMB8Wan67YO5NTd2dy6UaV/view?usp=sharing)
 
 ### Model Inference
 
 To run the inference code, follow these steps:
 
-1. **Load the Pretrained Model**: Ensure you have the pretrained model file `ViTime_V2_Opensource.pth`.
+1. **Load the Pretrained Model**: Ensure you have the pretrained model file `ViTime_V2.pth`.
 
 2. **Prepare the Inference Script**:
 
@@ -109,6 +110,5 @@ We welcome contributions to enhance ViTime. Please submit pull requests or open 
 ## License
 
 This project is licensed under the MIT License.
-
 
 
