@@ -2,8 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from ViTime.model.mobilenetv2 import mobilenetv2
-
+from model.mobilenetv2 import mobilenetv2
 
 
 class SELayer(nn.Module):
@@ -23,6 +22,7 @@ class SELayer(nn.Module):
         y = self.fc(y).view(b, c, 1, 1)
         return x * y.expand_as(x)
 
+
 class SELayer_ChannelAttention(nn.Module):
     def __init__(self, channel, reduction=16):
         super(SELayer_ChannelAttention, self).__init__()
@@ -38,6 +38,7 @@ class SELayer_ChannelAttention(nn.Module):
     def forward(self, x):
         y = self.fc(x)
         return x * y
+
 
 class MobileNetV2(nn.Module):
     def __init__(self, AdaFactor=1, downsample_factor=8, pretrained=True, image_C=3, dropout=0.2):
@@ -84,12 +85,14 @@ class MobileNetV2(nn.Module):
                     if m.kernel_size == (3, 3):
                         m.dilation = (dilate, dilate)
                         m.padding = (dilate, dilate)
+
         return apply_fn
 
     def forward(self, x):
         low_level_features = self.features[:4](x)
         x = self.features[4:](low_level_features)
         return low_level_features, x
+
 
 class ASPP(nn.Module):
     def __init__(self, dim_in, dim_out, rate=1, bn_mom=0.1):
@@ -139,6 +142,7 @@ class ASPP(nn.Module):
         feature_cat = torch.cat([conv1x1, conv3x3_1, conv3x3_2, conv3x3_3, global_feature], dim=1)
         result = self.conv_cat(feature_cat)
         return result
+
 
 class DeconvASPP(nn.Module):
     def __init__(self, dim_in, dim_out, bn_mom=0.1):
@@ -199,12 +203,13 @@ class DeconvASPP(nn.Module):
 
         return result
 
+
 class RefiningModel(nn.Module):
-    def __init__(self,  downsample_factor=16, dropout=0.1, args=None):
+    def __init__(self, downsample_factor=16, dropout=0.1, args=None):
         super(RefiningModel, self).__init__()
-        num_classes=1
-        image_C=num_classes
-        pretrained=False
+        num_classes = 1
+        image_C = num_classes
+        pretrained = False
         modelSize = args.modelSize if args else 1
         self.DO_ASPP = getattr(args, 'aspp', True)
         self.DO_LOWLEVEL = getattr(args, 'lowlevel', True)
@@ -215,10 +220,10 @@ class RefiningModel(nn.Module):
         dim_out = int(8 * 30 * AdaFactor)
         low_level_channels_out = int(8 * 30 * 1 / 5 * AdaFactor)
 
-        self.backbone = MobileNetV2(AdaFactor=AdaFactor, downsample_factor=downsample_factor, pretrained=pretrained, image_C=image_C, dropout=dropout)
+        self.backbone = MobileNetV2(AdaFactor=AdaFactor, downsample_factor=downsample_factor, pretrained=pretrained,
+                                    image_C=image_C, dropout=dropout)
         in_channels = self.backbone.in_channels
         low_level_channels = self.backbone.low_level_channels
-
 
         self.aspp = ASPP(dim_in=in_channels, dim_out=dim_out, rate=16 // downsample_factor)
         self.upsampleASPP = DeconvASPP(dim_in=num_classes, dim_out=num_classes)
@@ -250,7 +255,8 @@ class RefiningModel(nn.Module):
             x = self.aspp(x)
         low_level_features = self.shortcut_conv(low_level_features)
 
-        x = F.interpolate(x, size=(low_level_features.size(2), low_level_features.size(3)), mode='bilinear', align_corners=True)
+        x = F.interpolate(x, size=(low_level_features.size(2), low_level_features.size(3)), mode='bilinear',
+                          align_corners=True)
         if self.DO_LOWLEVEL:
             x = self.cat_conv(torch.cat((x, low_level_features), dim=1))
         else:
