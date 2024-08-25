@@ -18,26 +18,24 @@ class ViTime(nn.Module):
         MAE_Modelsize = copy.deepcopy(args.modelSize)
         args.modelAda = True
         self.args = args
-        self.model = ViTimeAutoencoder(args=args
-        )
+        self.model = ViTimeAutoencoder(args=args)
         args.modelSize = 40
         self.RefiningModel = RefiningModel(
-  
             downsample_factor=args.downsample_factor,
             dropout=args.dropout, args=args
         )
         self.EMD = nn.Softmax(dim=-1)
         args.modelSize = MAE_Modelsize
-        self.dataTool=Dataset_ViTime(args)
-        self.device=args.device
+        self.dataTool = Dataset_ViTime(args)
+        self.device = args.device
 
-    def forward(self, x, temparture=1):
+    def forward(self, x, temperature=1):
         """
         Forward pass of the combined model.
 
         Parameters:
         x (torch.Tensor): Input tensor.
-        temparture (float): Temperature for softmax scaling.
+        temperature (float): Temperature for softmax scaling.
 
         Returns:
         torch.Tensor: Output tensor.
@@ -53,19 +51,18 @@ class ViTime(nn.Module):
         x = self.EMD(x / 10)
         x = 20 * x * mask + xO
         x = self.RefiningModel(x)
-        x = self.EMD(x / temparture)
+        x = self.EMD(x / temperature)
         x = x.view(bs, c, w, h)
         return x
 
-
     def inference(self, data_x):
-        if len(data_x.shape)==1:
-            data_x=data_x.reshape(1,-1,1)
+        if len(data_x.shape) == 1:
+            data_x = data_x.reshape(1, -1, 1)
         elif len(data_x.shape) == 2:
-            T,C=data_x.shape
+            T, C = data_x.shape
             data_x = data_x.reshape(1, T, C)
 
-        x,d,mu,std=self.dataTool.dataTransformationBatch(data_x)
+        x, d, mu, std = self.dataTool.dataTransformationBatch(data_x)
 
         xInput = x.to(self.device)
         x = self.forward(xInput).detach().cpu().numpy()
