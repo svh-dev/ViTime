@@ -1,7 +1,6 @@
-from functools import partial
+import numpy as np
 import torch
 import torch.nn as nn
-import numpy as np
 from timm.models.vision_transformer import PatchEmbed, Block
 
 

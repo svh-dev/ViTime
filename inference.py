@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
-from model.model import ViTime
 import numpy as np
 import torch
+
+from model.model import ViTime
 
 deviceNum = 0
 torch.cuda.set_device(deviceNum)

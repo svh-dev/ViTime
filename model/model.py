@@ -1,11 +1,11 @@
 # Author: Luoxiao Yang
+import copy
+
 import torch
 import torch.nn as nn
-import matplotlib.pyplot as plt
+from datafactory.loadData import Dataset_ViTime
 from model.RefiningModel import RefiningModel
 from model.ViTimeAutoencoder import ViTimeAutoencoder
-import copy
-from datafactory.loadData import Dataset_ViTime
 
 
 class ViTime(nn.Module):

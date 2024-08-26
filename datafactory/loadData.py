@@ -1,22 +1,19 @@
 import os
+import pickle
+from functools import partial
+
+import cv2
 import numpy as np
 import pandas as pd
 import torch
-import sys
 from scipy.interpolate import interp1d
-from torch.utils.data import Dataset
 from sklearn.preprocessing import StandardScaler
-from functools import partial
-import warnings
-import cv2
-import pickle
+from torch.utils.data import Dataset
 
 try:
     from pyemd import EMD
 except:
     from pyemd import emd as EMD
-from PIL import Image, ImageDraw
-import matplotlib.pyplot as plt
 
 
 # Custom dataset for VR

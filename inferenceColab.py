@@ -1,8 +1,11 @@
 import argparse
+
 import matplotlib.pyplot as plt
-from model.model import ViTime
 import numpy as np
 import torch
+
+from model.model import ViTime
+
 
 def main(modelpath, savepath):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

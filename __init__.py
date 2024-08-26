@@ -1,5 +1,5 @@
-import sys
 import importlib
+import sys
 from importlib.abc import MetaPathFinder, Loader
 from importlib.util import spec_from_loader
 
